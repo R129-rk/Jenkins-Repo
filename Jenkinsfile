@@ -871,7 +871,7 @@ def inferTestClasses() {
         returnStdout: true,
         script: '''git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | grep -E '\\.cls$' ...'''
         ).trim()
-    
+}
     changedClasses.each { className ->
         if (className.matches(/.*(Test|Tests|TestClass)$/)) {
             testClasses.add(className)
