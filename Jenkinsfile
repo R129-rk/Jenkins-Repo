@@ -869,8 +869,8 @@ def inferTestClasses() {
     def testClasses = []
     def changedClasses = sh(
         returnStdout: true,
-        script: '''git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | grep -E '\\.cls$' | xargs -I {} basename {} .cls"
-    ).trim().split('\n').findAll { it }
+        script: '''git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | grep -E '\\.cls$' ...'''
+        ).trim()
     
     changedClasses.each { className ->
         if (className.matches(/.*(Test|Tests|TestClass)$/)) {
