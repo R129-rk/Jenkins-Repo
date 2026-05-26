@@ -869,7 +869,7 @@ def inferTestClasses() {
     def testClasses = []
     def changedClasses = sh(
         returnStdout: true,
-        script: "git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | grep -E '\\.cls$' | xargs -I {} basename {} .cls"
+        script: '''git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | grep -E '\\.cls$' | xargs -I {} basename {} .cls"
     ).trim().split('\n').findAll { it }
     
     changedClasses.each { className ->
