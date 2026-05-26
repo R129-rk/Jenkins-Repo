@@ -313,8 +313,8 @@ pipeline {
                     
                     # Detect changed files
                     CHANGED_FILES=$(git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | \
-                        # grep -E '\.(cls|trigger|js|html|css)$' || echo "")
-                        grep -E '\\.(cls|trigger|js|html|css)$'
+                        # grep -E '\\.(cls|trigger|js|html|css)$' || echo "")
+                        # grep -E '\\.(cls|trigger|js|html|css)$'
                     
                     if [ -z "$CHANGED_FILES" ]; then
                         echo "ℹ️  No Apex/JS/HTML/CSS files changed. SCA skipped."
