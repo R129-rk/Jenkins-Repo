@@ -860,8 +860,8 @@ def extractTestClasses() {
 def checkApexChanges() {
     def changes = sh(
         returnStdout: true,
-        script: "git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | grep -E '\\.(cls|trigger)$' | wc -l"
-    ).trim()
+        script: '''git diff ${DELTA_FROM_COMMIT}..HEAD --name-only | grep -E '\\.(cls|trigger)$' | wc -l'''
+).trim()
     return changes.toInteger() > 0
 }
 
