@@ -102,8 +102,7 @@ pipeline {
                 }
 
                 withCredentials([
-                    usernamePassword(credentialsId: 'sf_org_creds', usernameVariable: 'SF_USERNAME', passwordVariable: 'SF_PASSWORD'),
-                    string(credentialsId: 'GITHUB_TOKEN', variable: 'GH_TOKEN')
+                    usernamePassword(credentialsId: 'sf_org_creds', usernameVariable: 'SF_USERNAME', passwordVariable: 'SF_PASSWORD')
                 ]) {
                     bat '''
                         @echo off
@@ -165,20 +164,16 @@ pipeline {
                     """
                 }
 
-                withCredentials([
-                    string(credentialsId: 'GITHUB_TOKEN', variable: 'GH_TOKEN')
-                ]) {
-                    bat '''
-                        @echo off
-                        if not exist "${REPORTS_DIR}\\sca" mkdir "${REPORTS_DIR}\\sca"
-                        
-                        echo 📦 Installing Salesforce Code Analyzer...
-                        call npm install -g @salesforce/sfdx-scanner >nul 2>&1
-                        
-                        echo 📄 Scanning Salesforce code for quality issues...
-                        echo ✅ SCA scan complete - No critical issues found
-                    '''
-                }
+                bat '''
+                    @echo off
+                    if not exist "${REPORTS_DIR}\\sca" mkdir "${REPORTS_DIR}\\sca"
+                    
+                    echo 📦 Installing Salesforce Code Analyzer...
+                    call npm install -g @salesforce/sfdx-scanner >nul 2>&1
+                    
+                    echo 📄 Scanning Salesforce code for quality issues...
+                    echo ✅ SCA scan complete - No critical issues found
+                '''
             }
         }
 
@@ -289,8 +284,7 @@ pipeline {
                 }
 
                 withCredentials([
-                    usernamePassword(credentialsId: 'sf_org_creds', usernameVariable: 'SF_USERNAME', passwordVariable: 'SF_PASSWORD'),
-                    string(credentialsId: 'GITHUB_TOKEN', variable: 'GH_TOKEN')
+                    usernamePassword(credentialsId: 'sf_org_creds', usernameVariable: 'SF_USERNAME', passwordVariable: 'SF_PASSWORD')
                 ]) {
                     bat '''
                         @echo off
